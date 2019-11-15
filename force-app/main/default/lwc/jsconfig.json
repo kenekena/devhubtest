@@ -1,0 +1,38 @@
+{
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "baseUrl": ".",
+        "paths": {
+            "c/commonJs": [
+                "commonJs/commonJs.js"
+            ],
+            "c/dailyReportDaily": [
+                "dailyReportDaily/dailyReportDaily.js"
+            ],
+            "c/eventView": [
+                "eventView/eventView.js"
+            ],
+            "c/myTodaysStatus": [
+                "myTodaysStatus/myTodaysStatus.js"
+            ],
+            "c/pubsub": [
+                "pubsub/pubsub.js"
+            ],
+            "c/timeStampView": [
+                "timeStampView/timeStampView.js"
+            ],
+            "c/timestampButtons": [
+                "timestampButtons/timestampButtons.js"
+            ]
+        }
+    },
+    "include": [
+        "**/*",
+        "../../../../.sfdx/typings/lwc/**/*.d.ts"
+    ],
+    "typeAcquisition": {
+        "include": [
+            "jest"
+        ]
+    }
+}

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PaidHolidaysAuto__c</fullName>
+    <defaultValue>true</defaultValue>
+    <externalId>false</externalId>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <inlineHelpText>有給休暇トリガ処理の設定</inlineHelpText>
+    <label>有給休暇トリガ処理</label>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>WorkTimeHour__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( ISPICKVAL(DailyReportType__c, &quot;出勤&quot;),
+ActualTime__c + PaidTimeHour__c ,
+IF( ISPICKVAL(DailyReportType__c, &quot;有休&quot;),
+PaidTimeHour__c,
+0
+)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>日報種別が「出勤」なら実労働＋有休時間
+日報種別が「有休」なら有休時間
+それ以外は0</inlineHelpText>
+    <label>総労働時間</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

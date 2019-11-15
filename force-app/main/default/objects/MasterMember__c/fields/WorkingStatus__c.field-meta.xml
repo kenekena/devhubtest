@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>WorkingStatus__c</fullName>
+    <externalId>false</externalId>
+    <label>[システム]作業状況</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>休憩中</fullName>
+                <default>false</default>
+                <label>休憩中</label>
+            </value>
+            <value>
+                <fullName>外出中</fullName>
+                <default>false</default>
+                <label>外出中</label>
+            </value>
+            <value>
+                <fullName>移動中</fullName>
+                <default>false</default>
+                <label>移動中</label>
+            </value>
+            <value>
+                <fullName>作業中</fullName>
+                <default>false</default>
+                <label>作業中</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

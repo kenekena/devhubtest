@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OverTimeHour__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( ISPICKVAL(DailyReportType__c, &quot;出勤&quot;),
+(( OverTime__c / 30 ) /2),
+0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>日報種別が「出勤」以外なら0
+それ以外は実労働時間が日報_勤務時間を超えた時間を算出</inlineHelpText>
+    <label>時間外</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,55 @@
+<template>
+<lightning-card title="打刻ボタン" icon-name="custom:custom83">
+<div class="slds-m-around_medium" style="height: 242px;">
+    <p><span class="slds-form-element__label">出退勤打刻</span></p>
+
+    <p class="slds-m-bottom_x-small">
+        <button    
+            onclick={TimeStamp}
+            data-type="AttendanceChange"
+            value="Attendance" 
+            class={AttendanceClass}
+            disabled={Attendance}>出勤</button>
+        <button
+            onclick={TimeStamp}
+            data-type="LeavingChange"
+            value="Leaving"
+            class={LeavingClass}
+            disabled={Leaving}>退勤</button>
+    </p>
+    <p><span class="slds-form-element__label">作業状況打刻</span></p>
+    <p class="slds-m-bottom_x-small">
+        <button
+            onclick={WorkingChange}
+            value="rest"
+            data-workingtype="休憩中"
+            data-status={rest}
+            class={restClass}
+            disabled={rest}>休憩</button>
+        <button
+            onclick={WorkingChange}
+            value="outoffice"
+            data-workingtype="外出中"
+            data-status={outoffice}
+            class={outofficeClass}
+            disabled={outoffice}>外出</button>
+    </p>
+    <p>
+        <button
+            onclick={WorkingChange}
+            value="work"
+            data-workingtype="作業中"
+            data-status={work}
+            class={workClass}
+            disabled={work}>作業</button>
+        <button
+            onclick={WorkingChange}
+            value="move"
+            data-workingtype="移動中"
+            data-status={move}
+            class={moveClass}
+            disabled={move}>移動</button>
+    </p>
+</div>
+</lightning-card>
+</template>

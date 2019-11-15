@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EstimateType__c</fullName>
+    <externalId>false</externalId>
+    <label>見積種別</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>新規</fullName>
+                <default>false</default>
+                <label>新規</label>
+            </value>
+            <value>
+                <fullName>再見積</fullName>
+                <default>false</default>
+                <label>再見積</label>
+            </value>
+            <value>
+                <fullName>追加</fullName>
+                <default>false</default>
+                <label>追加</label>
+            </value>
+            <value>
+                <fullName>パターン</fullName>
+                <default>false</default>
+                <label>パターン</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

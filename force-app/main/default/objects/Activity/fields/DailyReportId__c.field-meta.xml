@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DailyReportId__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <externalId>false</externalId>
+    <label>関連日報</label>
+    <referenceTo>DailyReport__c</referenceTo>
+    <relationshipLabel>活動</relationshipLabel>
+    <relationshipName>DailyReports</relationshipName>
+    <required>false</required>
+    <type>Lookup</type>
+</CustomField>

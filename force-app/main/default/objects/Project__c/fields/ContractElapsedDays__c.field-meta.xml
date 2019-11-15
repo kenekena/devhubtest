@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ContractElapsedDays__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(ISBLANK( ContractDate__c ),
+IF(ISBLANK( ScheduledContractDate__c ),
+&quot;契約予定日未入力&quot;,
+IF( ScheduledContractDate__c &gt; TODAY(),
+NULL,
+TEXT( TODAY() - ScheduledContractDate__c ) + &quot;日経過&quot;
+)
+),
+NULL
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>契約予定経過日数</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
