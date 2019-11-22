@@ -1,0 +1,19 @@
+<template>
+<!-- タイムスタンプ -->
+<lightning-card title="タイムスタンプ" icon-name="custom:custom95">
+<div class="slds-m-slds-p-horizontal_x-small">
+<p class="slds-m-horizontal_medium slds-text-align_right" style="color:rgb(112, 110, 107)">{SelectDateText}</p>
+    <div class="slds-m-around_medium" style="height: 242px;">
+        <lightning-datatable
+            key-field="id"
+            hide-checkbox-column="false"
+            data={TimeStampInfo}
+            columns={columns}>
+        </lightning-datatable>
+        
+    </div>
+</div>
+</lightning-card>
+<!-- END:タイムスタンプ -->
+
+</template>

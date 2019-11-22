@@ -1,0 +1,369 @@
+<template>
+<div class="slds-m-bottom_medium">
+<lightning-card title="検索" icon-name="standard:search">
+    <template if:true={MemberSearchMode}>
+    <div class="slds-m-around_medium">
+        <div class="ikkatu">
+            <p class="title">メンバー検索</p>
+            <lightning-combobox
+                name="Affiliation"
+                label="部署を選択"
+                value={SelectAffiliation}
+                placeholder="未選択"
+                options={AffiliationList}
+                disabled={EditMode}
+                onchange={ChangeAffiliation} >
+            </lightning-combobox>
+            <lightning-combobox
+            name="Member"
+            label="メンバーを選択"
+            value={SelectMember}
+            placeholder="未選択"
+            options={MemberList}
+            disabled={EditMode}
+            onchange={ChangeMember} >
+        </lightning-combobox>
+        </div>
+    </div>
+    </template>
+    <div class="slds-m-around_medium">
+        <div class="ikkatu">
+            <p class="title">日付検索</p>
+            <div class="slds-m-bottom_medium">
+                <lightning-input label="日付指定" onchange={ChangeSelectDate} data-type="DateSelect" type="date" name="input2" value={SelectDateProcess} disabled={EditMode}></lightning-input>
+            </div>
+            <lightning-button-group>
+                <lightning-button label="前日" onclick={ChangeSelectDate} data-type="DateButton" value="-1" icon-name="utility:left" alternative-text="前日" tooltip="前日" disabled={EditMode}></lightning-button>
+                <lightning-button label="今日" onclick={ChangeSelectDate} data-type="DateButton" value="0" disabled={EditMode}></lightning-button>
+                <lightning-button label="翌日" onclick={ChangeSelectDate} data-type="DateButton" value="1" icon-name="utility:right" icon-position="right" alternative-text="翌日" tooltip="翌日" disabled={EditMode}></lightning-button>
+            </lightning-button-group>   
+        <!-- 
+        <div class="slds-m-bottom_medium">
+            <lightning-layout multiple-rows>
+                <lightning-layout-item size="12" medium-device-size="6" large-device-size="6" padding="around-small">
+                    <lightning-input label="日付指定" onchange={ChangeSelectDate} data-type="DateSelect" type="date" name="input2" value={SelectDateProcess} disabled={EditMode}></lightning-input>
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
+        -->
+        </div>    
+    </div>
+    
+</lightning-card>
+</div>
+
+<div class="slds-m-bottom_medium">
+<lightning-card title={Title} icon-name="custom:custom18">
+    <div class="slds-m-around_medium">
+    <template if:false={EditMode}>
+        <lightning-layout multiple-rows>
+            <lightning-layout-item size="12" medium-device-size="6" large-device-size="6" padding="around-small">
+            <div class="slds-form-element slds-form-element_readonly">
+                <span class="slds-form-element__label">日付</span>
+                <div class="slds-form-element__control">
+                    <div class="slds-form-element__static">{DailyReportInfo.DateText}</div>
+                </div>
+            </div>
+            <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-hint-parent">
+                <span class="slds-form-element__label">種別</span>
+                <div class="slds-form-element__control">
+                    <div class="slds-form-element__static">{DailyReportInfo.DailyReportType__c}</div>
+                    <button class="slds-button slds-button_icon" title="Edit: Status" value=1 onclick={handleToggleClick}>
+                    <svg class="slds-button__icon slds-button__icon_hint" aria-hidden="true">
+                        <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg?cache=9.26.0#edit"></use>
+                    </svg>
+                    <span class="slds-assistive-text">Edit: Status</span>
+                    </button>
+                </div>
+            </div>
+            <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-hint-parent">
+                <span class="slds-form-element__label">予定出勤時間</span>
+                <div class="slds-form-element__control">
+                    <div class="slds-form-element__static">{DailyReportInfo.ScheduledAttendanceTime__c}</div>
+                    <button class="slds-button slds-button_icon" title="Edit: Status" value=1 onclick={handleToggleClick}>
+                    <svg class="slds-button__icon slds-button__icon_hint" aria-hidden="true">
+                        <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg?cache=9.26.0#edit"></use>
+                    </svg>
+                    <span class="slds-assistive-text">Edit: Status</span>
+                    </button>
+                </div>
+            </div>
+            <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-hint-parent">
+                <span class="slds-form-element__label">予定退勤時間</span>
+                <div class="slds-form-element__control">
+                    <div class="slds-form-element__static">{DailyReportInfo.ScheduledLeavingTime__c}</div>
+                    <button class="slds-button slds-button_icon" title="Edit: Status" value=1 onclick={handleToggleClick}>
+                    <svg class="slds-button__icon slds-button__icon_hint" aria-hidden="true">
+                        <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg?cache=9.26.0#edit"></use>
+                    </svg>
+                    <span class="slds-assistive-text">Edit: Status</span>
+                    </button>
+                </div>
+            </div>
+            <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-hint-parent">
+                <span class="slds-form-element__label">出勤時間</span>
+                <div class="slds-form-element__control">
+                    <div class="slds-form-element__static">{DailyReportInfo.AttendanceTimeSelection__c}</div>
+                    <button class="slds-button slds-button_icon" title="Edit: Status" value=1 onclick={handleToggleClick}>
+                    <svg class="slds-button__icon slds-button__icon_hint" aria-hidden="true">
+                        <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg?cache=9.26.0#edit"></use>
+                    </svg>
+                    <span class="slds-assistive-text">Edit: Status</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-hint-parent">
+                <span class="slds-form-element__label">退勤時間</span>
+                <div class="slds-form-element__control">
+                    <div class="slds-form-element__static">{DailyReportInfo.LeavingTimeSelection__c}</div>
+                    <button class="slds-button slds-button_icon" title="Edit: Status" value=1 onclick={handleToggleClick}>
+                    <svg class="slds-button__icon slds-button__icon_hint" aria-hidden="true">
+                        <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg?cache=9.26.0#edit"></use>
+                    </svg>
+                    <span class="slds-assistive-text">Edit: Status</span>
+                    </button>
+                </div>
+            </div>
+            <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-hint-parent">
+                <span class="slds-form-element__label">休憩時間</span>
+                <div class="slds-form-element__control">
+                    <div class="slds-form-element__static">{DailyReportInfo.BreakTimeSelection__c}</div>
+                    <button class="slds-button slds-button_icon" title="Edit: Status" value=1 onclick={handleToggleClick}>
+                    <svg class="slds-button__icon slds-button__icon_hint" aria-hidden="true">
+                        <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg?cache=9.26.0#edit"></use>
+                    </svg>
+                    <span class="slds-assistive-text">Edit: Status</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="slds-form-element slds-form-element_readonly">
+                <span class="slds-form-element__label">出勤時間：タイムスタンプ</span>
+                <div class="slds-form-element__control">
+                    <div class="slds-form-element__static">{DailyReportInfo.DisplayTimeStampAttendanceTime__c}</div>
+                </div>
+            </div>
+            <div class="slds-form-element slds-form-element_readonly">
+                <span class="slds-form-element__label">退勤時間：タイムスタンプ</span>
+                <div class="slds-form-element__control">
+                    <div class="slds-form-element__static">{DailyReportInfo.DisplayTimeStampLeavingTime__c}</div>
+                </div>
+            </div>
+            </lightning-layout-item>
+            <lightning-layout-item size="12" medium-device-size="6" large-device-size="6" padding="around-small">
+                <div class="slds-form-element slds-form-element_readonly">
+                    <span class="slds-form-element__label">関連メンバー</span>
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">{MemberMasterInfo.Name}</div>
+                    </div>
+                </div>
+                <div class="slds-form-element slds-form-element_readonly">
+                    <span class="slds-form-element__label">実労働時間</span>
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">{DailyReportInfo.ActualTime__c}</div>
+                    </div>
+                </div>
+                <div class="slds-form-element slds-form-element_readonly">
+                    <span class="slds-form-element__label">時間外</span>
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">{DailyReportInfo.OverTimeHour__c}</div>
+                    </div>
+                </div>
+                <div class="slds-form-element slds-form-element_readonly">
+                    <span class="slds-form-element__label">深夜時間</span>
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">{DailyReportInfo.MidnightTimeHour__c}</div>
+                    </div>
+                </div>
+                <div class="slds-form-element slds-form-element_readonly">
+                    <span class="slds-form-element__label">休日出勤時間</span>
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">{DailyReportInfo.HolidayWorkTime__c}</div>
+                    </div>
+                </div>
+
+            </lightning-layout-item>
+        </lightning-layout>
+
+        <div class="slds-m-top_large slds-m-left_small">
+            <lightning-button label="編集" value=1 onclick={handleToggleClick}></lightning-button>
+        </div>
+    </template>
+
+    <template if:true={EditMode}>   
+        <lightning-layout multiple-rows>
+            <lightning-layout-item size="12" medium-device-size="6" large-device-size="6" padding="around-small">
+            <div class="slds-form-element">
+                <label class="slds-form-element__label">日付</label>
+                <div class="slds-form-element__control">
+                <div class="slds-combobox_container">
+                <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click" aria-expanded="false" aria-haspopup="listbox" role="combobox">
+                <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+                    <input type="text" class="slds-input slds-combobox__input" aria-controls="listbox-id-1" role="textbox" placeholder="Select an Option" value={DailyReportInfo.Date__c} disabled />
+                </div>
+                </div>
+                </div>
+                </div>
+            </div>
+            
+            <lightning-combobox
+                name="DailyReportType"
+                label="種類"
+                value={DailyReportTypeValue}
+                placeholder="未選択"
+                options={DailyReportTypeList.data.values}
+                onchange={ChangeValue}
+                required
+            ></lightning-combobox>
+            <template if:true={erorrMes}>
+                <p class="slds-text-color_error">{erorrMes}</p>
+            </template>
+
+            <lightning-combobox
+                name="ScheduledAttendanceTime"
+                label="予定出勤時間"
+                value={ScheduledAttendanceTimeValue}
+                placeholder="未選択"
+                options={ScheduledAttendanceTimeList}
+                onchange={ChangeValue}
+            ></lightning-combobox>
+
+            <lightning-combobox
+                name="ScheduledLeavingTime"
+                label="予定退勤時間"
+                value={ScheduledLeavingTimeValue}
+                placeholder="未選択"
+                options={ScheduledLeavingTimeList}
+                onchange={ChangeValue}
+            ></lightning-combobox>
+            
+            <lightning-combobox
+                name="AttendanceTime"
+                label="出勤時間"
+                value={AttendanceTimeValue}
+                placeholder="未選択"
+                options={AttendanceTimeList}
+                onchange={ChangeValue}
+            ></lightning-combobox>
+
+            <lightning-combobox
+                name="LeavingTime"
+                label="退勤時間"
+                value={LeavingTimeValue}
+                placeholder="未選択"
+                options={LeavingTimeList}
+                onchange={ChangeValue}
+            ></lightning-combobox>
+            
+            <lightning-combobox
+                name="BreakTime"
+                label="休憩時間"
+                value={BreakTimeValue}
+                placeholder="未選択"
+                options={BreakTimeList.data.values}
+                onchange={ChangeValue}
+            ></lightning-combobox>
+
+            <div class="slds-form-element">
+                <label class="slds-form-element__label">出勤時間：タイムスタンプ</label>
+                <div class="slds-form-element__control">
+                <div class="slds-combobox_container">
+                <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click" aria-expanded="false" aria-haspopup="listbox" role="combobox">
+                <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+                    <input type="text" class="slds-input slds-combobox__input" aria-controls="listbox-id-1" role="textbox" placeholder="" value={DailyReportInfo.DisplayTimeStampAttendanceTime__c} disabled />
+                </div>
+                </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="slds-form-element">
+                <label class="slds-form-element__label">退勤時間：タイムスタンプ</label>
+                <div class="slds-form-element__control">
+                <div class="slds-combobox_container">
+                <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click" aria-expanded="false" aria-haspopup="listbox" role="combobox">
+                <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+                    <input type="text" class="slds-input slds-combobox__input" aria-controls="listbox-id-1" role="textbox" placeholder="" value={DailyReportInfo.DisplayTimeStampLeavingTime__c} disabled />
+                </div>
+                </div>
+                </div>
+                </div>
+            </div>
+            </lightning-layout-item>
+            <lightning-layout-item size="12" medium-device-size="6" large-device-size="6" padding="around-small">
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label">関連メンバー</label>
+                    <div class="slds-form-element__control">
+                    <div class="slds-combobox_container">
+                    <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click" aria-expanded="false" aria-haspopup="listbox" role="combobox">
+                    <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+                        <input type="text" class="slds-input slds-combobox__input" aria-controls="listbox-id-1" role="textbox" placeholder="" value={MemberMasterInfo.Name} disabled />
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label">実労働時間</label>
+                    <div class="slds-form-element__control">
+                    <div class="slds-combobox_container">
+                    <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click" aria-expanded="false" aria-haspopup="listbox" role="combobox">
+                    <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+                        <input type="text" class="slds-input slds-combobox__input" aria-controls="listbox-id-1" role="textbox" placeholder="" value={DailyReportInfo.ActualTime__c} disabled />
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label">時間外</label>
+                    <div class="slds-form-element__control">
+                    <div class="slds-combobox_container">
+                    <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click" aria-expanded="false" aria-haspopup="listbox" role="combobox">
+                    <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+                        <input type="text" class="slds-input slds-combobox__input" aria-controls="listbox-id-1" role="textbox" placeholder="" value={DailyReportInfo.OverTimeHour__c} disabled />
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="slds-form-element">
+                        <label class="slds-form-element__label">深夜時間</label>
+                        <div class="slds-form-element__control">
+                        <div class="slds-combobox_container">
+                        <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click" aria-expanded="false" aria-haspopup="listbox" role="combobox">
+                        <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+                            <input type="text" class="slds-input slds-combobox__input" aria-controls="listbox-id-1" role="textbox" placeholder="" value={DailyReportInfo.MidnightTimeHour__c} disabled />
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                    </div>
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label">休日出勤</label>
+                    <div class="slds-form-element__control">
+                    <div class="slds-combobox_container">
+                    <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click" aria-expanded="false" aria-haspopup="listbox" role="combobox">
+                    <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+                        <input type="text" class="slds-input slds-combobox__input" aria-controls="listbox-id-1" role="textbox" placeholder="" value={DailyReportInfo.HolidayWorkTime__c} disabled />
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                </div>
+
+            </lightning-layout-item>
+        </lightning-layout>
+
+        <div class="slds-m-top_large slds-m-left_small">
+            <lightning-button label="キャンセル" value=0 onclick={handleToggleClick}></lightning-button>
+            <lightning-button label="保存" variant="brand" onclick={Save}></lightning-button>
+        </div>
+        
+    </template>
+    </div>
+</lightning-card>
+</div>
+</template>

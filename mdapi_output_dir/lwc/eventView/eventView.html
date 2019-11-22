@@ -1,0 +1,77 @@
+<template>
+<!-- 行動 -->
+<lightning-card title="行動" icon-name="custom:custom95">
+<div class="slds-m-slds-p-horizontal_x-small">
+    <p class="slds-m-horizontal_medium slds-text-align_right" style="color:rgb(112, 110, 107)">{SelectDateText}</p>
+    <div class="slds-m-around_medium" style="height: 242px;">
+        <lightning-datatable
+            key-field="id"
+            hide-checkbox-column="false"
+            data={EventlList}
+            columns={columns}>
+        </lightning-datatable>
+    </div>
+</div>
+</lightning-card>
+<!-- END:行動 -->
+
+
+<!-- 
+<lightning-card title={Title} icon-name="custom:custom95">
+    <div class="slds-m-around_medium">
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
+        <thead>
+            <tr class="slds-line-height_reset">
+                <th class="w17" scope="col">
+                    <div class="slds-truncate" title="Opportunity Name">行動種別</div>
+                </th>
+                <th class="w11" scope="col">
+                    <div class="slds-truncate" title="Opportunity Name">開始</div>
+                </th>
+                <th class="w11" scope="col">
+                    <div class="slds-truncate" title="Opportunity Name">終了</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Opportunity Name">件名</div>
+                </th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <template if:false={EventlList.length}>
+                <tr class="slds-hint-parent">
+                    <td colspan="5">{SelectDateText}の行動はありません。</td>
+                </tr>
+            </template>
+            <template for:each={EventlList} for:item="list">
+            <tr key={list.Id} class="slds-hint-parent">
+                <td>
+                    <template if:true={list.Type}>
+                        <div>
+                            <template if:true={list.IsAllDayEvent}>（終日行動）</template>
+                            {list.Type}
+                        </div>
+                    </template>
+                </td>
+                <td>
+                    <template if:false={list.IsAllDayEvent}>
+                        <template if:true={list.StartDateTime}><div>{list.StartTime__c}</div></template>
+                    </template>
+                </td>
+                <td>
+                    <template if:false={list.IsAllDayEvent}>
+                        <template if:true={list.EndDateTime}><div>{list.EndTime__c}</div></template>
+                    </template>
+                </td>
+                <td>
+                    <template if:true={list.Subject}><div>{list.Subject}</div></template>
+                </td>
+            </tr>
+            </template>
+        </tbody>
+    </table>
+            
+    </div>
+</lightning-card> 
+-->
+</template>

@@ -1,0 +1,76 @@
+<template>
+<!-- 本日の出勤状況 -->
+<lightning-card title="本日の出勤状況" icon-name="custom:custom18">
+<div class="slds-m-slds-p-horizontal_x-small">
+    <lightning-layout multiple-rows>
+        <lightning-layout-item size="12" medium-device-size="12" large-device-size="6" padding="horizontal-small">
+            <div class="slds-form-element slds-form-element_readonly">
+                <span class="slds-form-element__label">日付</span>
+                <div class="slds-form-element__control">
+                    <div class="slds-form-element__static">{DailyReportInfo.DateText}</div>
+                </div>
+            </div>
+            <div class="slds-form-element slds-form-element_readonly">
+                <span class="slds-form-element__label">種別</span>
+                <div class="slds-form-element__control">
+                    <div class="slds-form-element__static">{DailyReportInfo.DailyReportType__c}</div>
+                </div>
+            </div>
+            <div class="slds-form-element slds-form-element_readonly">
+                <span class="slds-form-element__label">予定出勤時間</span>
+                <div class="slds-form-element__control">
+                    <div class="slds-form-element__static">{DailyReportInfo.ScheduledAttendanceTime__c}</div>
+                </div>
+            </div>
+            <div class="slds-form-element slds-form-element_readonly">
+                <span class="slds-form-element__label">出勤時間</span>
+                <div class="slds-form-element__control">
+                    <div class="slds-form-element__static">{DailyReportInfo.AttendanceTimeSelection__c}</div>
+                </div>
+            </div>
+            <div class="slds-form-element slds-form-element_readonly">
+                <span class="slds-form-element__label">出勤時間：タイムスタンプ</span>
+                <div class="slds-form-element__control">
+                    <div class="slds-form-element__static">{DailyReportInfo.DisplayTimeStampAttendanceTime__c}</div>
+                </div>
+            </div>
+        </lightning-layout-item>
+        <lightning-layout-item size="12" medium-device-size="6" large-device-size="6" padding="horizontal-small">
+            <div class="slds-form-element slds-form-element_readonly">
+                <span class="slds-form-element__label">出勤状況</span>
+                <div class="slds-form-element__control">
+                    <div class="slds-form-element__static">{MemberMasterInfo.ArrivalStatus}</div>
+                </div>
+            </div>
+            <div class="slds-form-element slds-form-element_readonly">
+                <span class="slds-form-element__label">作業状況</span>
+                <div class="slds-form-element__control">
+                    <div class="slds-form-element__static">{MemberMasterInfo.WorkingStatus__c}</div>
+                </div>
+            </div>
+            <div class="slds-form-element slds-form-element_readonly">
+                <span class="slds-form-element__label">予定退勤時間</span>
+                <div class="slds-form-element__control">
+                    <div class="slds-form-element__static">{DailyReportInfo.ScheduledLeavingTime__c}</div>
+                </div>
+            </div>
+            <div class="slds-form-element slds-form-element_readonly">
+                <span class="slds-form-element__label">退勤時間</span>
+                <div class="slds-form-element__control">
+                    <div class="slds-form-element__static">{DailyReportInfo.LeavingTimeSelection__c}</div>
+                </div>
+            </div>
+            <div class="slds-form-element slds-form-element_readonly">
+                <span class="slds-form-element__label">退勤時間：タイムスタンプ</span>
+                <div class="slds-form-element__control">
+                    <div class="slds-form-element__static">{DailyReportInfo.DisplayTimeStampLeavingTime__c}</div>
+                </div>
+            </div>
+        </lightning-layout-item>
+    </lightning-layout>
+
+</div>
+</lightning-card>
+<!-- END:本日の出勤状況 -->
+
+</template>

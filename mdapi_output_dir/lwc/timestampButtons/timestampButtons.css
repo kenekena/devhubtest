@@ -1,0 +1,54 @@
+.red{
+    color: crimson;
+}
+
+.blue{
+    color: royalblue;
+}
+
+.yellow{
+    color: orange;
+}
+
+.green{
+    color: limegreen;
+}
+
+/* ここから下がボタンのCSS　*/
+.btn-push {
+    display: inline-block;
+    width: 50%;
+    text-align: center;
+    background-color: #ffa300;
+    font-size: 16px;
+    color: #FFF;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 15px 24px;
+    border-radius: 4px;
+    border-bottom: 4px solid #d37800;
+}
+
+.btn-blue{
+    background-color: #668ad8;
+    border-bottom: 4px solid #627295;
+}
+
+.btn-push:active {
+    transform: translateY(4px);
+    /*border-bottom: none;*/
+}
+
+.btn-push-disabled {
+    display: inline-block;
+    width: 50%;
+    text-align: center;
+    background-color: #999;
+    font-size: 16px;
+    color: #FFF;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 15px 24px;
+    border-radius: 4px;
+    transform: translateY(4px);
+}
